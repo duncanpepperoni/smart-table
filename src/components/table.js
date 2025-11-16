@@ -27,15 +27,15 @@ export function initTable(settings, onAction) {
 
   // @todo: #1.3 —  обработать события и вызвать onAction()
 
-  root.container.addEventListener("change", function () {
+  root.container.addEventListener("change", () => {
     onAction();
   });
 
-  root.container.addEventListener("reset", function () {
-    setTimeout``(onAction);
+  root.container.addEventListener("reset", () => {
+    setTimeout(onAction);
   });
 
-  root.container.addEventListener("submit", function () {
+  root.container.addEventListener("submit", (e) => {
     e.preventDefault();
     onAction(e.submitter);
   });
@@ -46,7 +46,7 @@ export function initTable(settings, onAction) {
       const row = cloneTemplate(rowTemplate); // клонируем шаблон строки
 
       Object.keys(item).forEach((key) => {
-        if (key in row.elements) {
+        if (row.elements[key]) {
           row.elements[key].textContent = item[key]; // присваиваем значение из данных в текст элемента шаблона
         }
       });
